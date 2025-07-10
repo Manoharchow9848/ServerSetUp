@@ -1,16 +1,10 @@
 import express from 'express';
-
+import { getCartItemWithUserId,addProductToCartWithUserId } from '../controller/cart.controller.js';
 const router = express.Router();
 
 
-router.get('/:userId', (req, res) => {
-    res.send(`Fetching cart for user with UserID: ${req.params.userId}`);
-}
-);
-router.post('/:userId', (req, res) => {
-    res.send(` Adding product to cart for user with UserID: ${req.params.userId}`);
-}
-);
+router.get('/:userId', getCartItemWithUserId);
+router.post('/:userId', addProductToCartWithUserId);
 
 
 
