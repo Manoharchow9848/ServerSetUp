@@ -1,8 +1,7 @@
 import productService from "../service/productService.js";
-
+import path from "path";
 export const getAllProducts = (req, res) => {
-     const products = productService.getAllProducts();
-     res.json(products);
+     res.sendFile(path.join(process.cwd(), "views", "products.html"));
 }
 
 export const addProduct = (req, res) => {
