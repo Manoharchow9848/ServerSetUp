@@ -1,0 +1,28 @@
+import express from 'express';
+
+const router = express.Router();
+const courses = [
+
+{ id: 1, name: "Frontend", description: "HTML, CSS, JS, React" },
+
+{ id: 2, name: "Backend", description: "Node.js, Express, MongoDB" }
+
+];
+
+router.get('/', (req, res) => {
+    const names = courses.map(s => s.name).join(", ");
+  res.send(`Students: ${names}`);
+});
+
+router.get('/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const course = courses.find(s => s.id === id);
+    if (course) {
+        res.send(`Course: ${course.name}, Description: ${course.description}`);
+    }
+    else {
+        res.status(404).send('Course not found');
+    }
+});
+
+export default router;
