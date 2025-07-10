@@ -1,11 +1,22 @@
+import productService from "../service/productService.js";
+
 export const getAllProducts = (req, res) => {
-    res.send('Fetching all products');
+     const products = productService.getAllProducts();
+     res.json(products);
 }
 
 export const addProduct = (req, res) => {
-    res.send('Adding a new Product');
+    const productData = req.body;
+    const newProduct = productService.addProduct(productData);
+    res.status(201).json(newProduct);
 }
 
 export const getProductById = (req, res) => {
-    res.send(`Fetching product with ID: ${req.params.id}`);
+    const productId = req.params.id;
+    const product = productService.getProductById(productId);
+    if (product) {
+        res.json(product);
+    } else {
+        res.status(404).json({ message: "Product not found" });
+    }
 }
